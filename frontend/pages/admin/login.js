@@ -36,30 +36,39 @@ export default function AdminLogin() {
         <>
             <Head>
                 <title>Admin Login - DATAKOMEZA</title>
+                <link rel="preconnect" href="https://fonts.googleapis.com" />
+                <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+                <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
             </Head>
 
-            <div className={styles.container}>
-                <div className={styles.authBox}>
-                    <div className={styles.authHeader}>
-                        <h1>Admin Portal</h1>
-                        <p className="text-muted">Sign in to access the admin dashboard</p>
+            <div className={styles.authContainer}>
+                <div className={styles.authCard}>
+                    <div className={styles.logo}>
+                        <div className={styles.logoText}>DATAKOMEZA</div>
+                        <div className={styles.logoSubtext}>Admin Portal</div>
+                        <div className={styles.quantumBadge}>
+                            Post-Quantum Secured
+                        </div>
                     </div>
 
+                    <h2 className={styles.title}>Admin Login</h2>
+                    <p className={styles.subtitle}>Sign in to access the admin dashboard</p>
+
                     {error && (
-                        <div className="alert alert-error">
+                        <div className={styles.error}>
                             {error}
                         </div>
                     )}
 
-                    <form onSubmit={handleSubmit} className={styles.authForm}>
-                        <div className="form-group">
-                            <label htmlFor="email" className="form-label">
+                    <form onSubmit={handleSubmit} className={styles.form}>
+                        <div className={styles.formGroup}>
+                            <label htmlFor="email" className={styles.label}>
                                 Email Address
                             </label>
                             <input
                                 type="email"
                                 id="email"
-                                className="form-input"
+                                className={styles.input}
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                                 placeholder="admin@datakomeza.org"
@@ -67,14 +76,14 @@ export default function AdminLogin() {
                             />
                         </div>
 
-                        <div className="form-group">
-                            <label htmlFor="password" className="form-label">
+                        <div className={styles.formGroup}>
+                            <label htmlFor="password" className={styles.label}>
                                 Password
                             </label>
                             <input
                                 type="password"
                                 id="password"
-                                className="form-input"
+                                className={styles.input}
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
                                 placeholder="••••••••"
@@ -84,24 +93,39 @@ export default function AdminLogin() {
 
                         <button
                             type="submit"
-                            className="btn btn-primary"
-                            style={{ width: '100%' }}
+                            className={styles.submitButton}
                             disabled={loading}
                         >
-                            {loading ? 'Signing in...' : 'Sign In as Admin'}
+                            {loading ? (
+                                <>
+                                    <span className={styles.spinner}></span>
+                                    Signing in...
+                                </>
+                            ) : (
+                                'Sign In as Admin'
+                            )}
                         </button>
                     </form>
 
-                    <div className={styles.authFooter}>
-                        <p className="text-muted">
-                            <Link href="/">← Back to home</Link>
-                        </p>
+                    <div className={styles.divider}>
+                        <span className={styles.dividerText}>Demo Credentials</span>
                     </div>
 
-                    <div className={styles.sampleCredentials}>
-                        <h4>Sample Admin Credentials</h4>
-                        <p><strong>Email:</strong> admin@datakomeza.org</p>
-                        <p><strong>Password:</strong> Admin@123</p>
+                    <div style={{
+                        background: 'rgba(255, 255, 255, 0.1)',
+                        padding: '1rem',
+                        borderRadius: '12px',
+                        fontSize: '0.875rem',
+                        color: 'rgba(255, 255, 255, 0.9)'
+                    }}>
+                        <p style={{ margin: '0.25rem 0' }}><strong>Email:</strong> admin@datakomeza.org</p>
+                        <p style={{ margin: '0.25rem 0' }}><strong>Password:</strong> Admin@123</p>
+                    </div>
+
+                    <div className={styles.link}>
+                        <Link href="/" className={styles.linkButton}>
+                            ← Back to home
+                        </Link>
                     </div>
                 </div>
             </div>

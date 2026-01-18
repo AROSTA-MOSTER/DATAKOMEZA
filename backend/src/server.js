@@ -18,6 +18,14 @@ const adminRoutes = require('./routes/admin');
 const mosipRoutes = require('./routes/mosip');
 const securityRoutes = require('./routes/security');
 
+// New MOSIP-compliant routes
+const authenticationRoutes = require('./routes/authentication');
+const virtualIdRoutes = require('./routes/virtualId');
+const partnerRoutes = require('./routes/partners');
+const policyRoutes = require('./routes/policies');
+const residentRoutes = require('./routes/resident');
+const registrationRoutes = require('./routes/registration');
+
 const errorHandler = require('./middleware/errorHandler');
 const { logger } = require('./utils/logger');
 const { apiLimiter, authLimiter, mosipLimiter, registrationLimiter } = require('./middleware/rateLimiter');
@@ -56,18 +64,69 @@ app.use('/api/admin', adminRoutes);
 app.use('/api/mosip', mosipLimiter, mosipRoutes); // Limit MOSIP operations
 app.use('/api/security', securityRoutes); // Security information
 
+// New MOSIP-compliant routes
+app.use('/api/authentication', authLimiter, authenticationRoutes); // Multi-modal authentication
+app.use('/api/vid', virtualIdRoutes); // Virtual ID management
+app.use('/api/partners', partnerRoutes); // Partner management
+app.use('/api/policies', policyRoutes); // Policy management
+app.use('/api/resident', residentRoutes); // Resident services
+app.use('/api/registration', registrationLimiter, registrationRoutes); // Registration client
+
 // API Documentation
 app.get('/api-docs', (req, res) => {
     res.json({
         name: 'DATAKOMEZA API',
-        version: '1.0.0',
-        description: 'Privacy-preserving digital identity platform for refugees',
+        version: '2.0.0',
+        description: 'MOSIP-compliant privacy-preserving digital identity platform for refugees',
         endpoints: {
             auth: {
                 'POST /api/auth/register': 'Register new refugee user',
                 'POST /api/auth/login': 'Login with email/phone and PIN',
                 'POST /api/auth/admin/login': 'Admin login',
                 'POST /api/auth/refresh': 'Refresh JWT token'
+            },
+            authentication: {
+                'POST /api/authentication/otp/send': 'Send OTP (SMS/Email)',
+                'POST /api/authentication/otp/verify': 'Verify OTP',
+                'POST /api/authentication/demographic': 'Demographic authentication',
+                'POST /api/authentication/biometric': 'Biometric authentication',
+                'POST /api/authentication/ekyc': 'e-KYC authentication',
+                'GET /api/authentication/history/:userId': 'Get authentication history'
+            },
+            virtualId: {
+                'POST /api/vid/generate': 'Generate Virtual ID',
+                'POST /api/vid/revoke': 'Revoke Virtual ID',
+                'GET /api/vid/list/:userId': 'List user VIDs',
+                'POST /api/vid/validate': 'Validate VID',
+                'GET /api/vid/usage/:userId': 'Get VID usage history'
+            },
+            partners: {
+                'POST /api/partners/register': 'Partner self-registration',
+                'POST /api/partners/:id/certificate': 'Upload CA certificate',
+                'POST /api/partners/:id/api-key': 'Generate API key',
+                'POST /api/partners/:id/license': 'Generate license key',
+                'PUT /api/partners/:id/approve': 'Approve partner',
+                'GET /api/partners/:id': 'Get partner details',
+                'GET /api/partners': 'List partners'
+            },
+            policies: {
+                'POST /api/policies': 'Create policy',
+                'GET /api/policies/:id': 'Get policy',
+                'GET /api/policies': 'List policies',
+                'PUT /api/policies/:id': 'Update policy',
+                'POST /api/policies/map': 'Map policy to partner',
+                'GET /api/policies/partner/:id': 'Get partner policies'
+            },
+            resident: {
+                'POST /api/resident/auth/lock': 'Lock authentication method',
+                'POST /api/resident/auth/unlock': 'Unlock authentication method',
+                'GET /api/resident/auth/locks/:userId': 'Get auth locks',
+                'POST /api/resident/service-request': 'Create service request',
+                'GET /api/resident/service-requests/:userId': 'Get service requests',
+                'GET /api/resident/transactions/:userId': 'Get transaction history',
+                'POST /api/resident/verify/phone': 'Verify phone number',
+                'POST /api/resident/verify/email': 'Verify email',
+                'POST /api/resident/data-update': 'Request data update'
             },
             users: {
                 'GET /api/users/profile': 'Get user profile',
@@ -103,7 +162,8 @@ app.get('/api-docs', (req, res) => {
                 'GET /api/mosip/verify/:mosipId': 'Verify MOSIP identity',
                 'POST /api/mosip/update': 'Update MOSIP record'
             }
-        }
+        },
+        totalEndpoints: '50+'
     });
 });
 

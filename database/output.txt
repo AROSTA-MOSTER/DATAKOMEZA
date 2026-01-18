@@ -1,0 +1,26 @@
+≡ƒÜÇ Database Setup Starting...
+
+≡ƒº╣ Cleaning existing database...
+Γ£à Database cleaned
+
+Found 6 migration files
+
+Γû╢∩╕Å  Running 000_initial_schema.sql...
+Γ£à Completed 000_initial_schema.sql
+
+Γû╢∩╕Å  Running 006_authentication_tables.sql...
+Γ£à Completed 006_authentication_tables.sql
+
+Γû╢∩╕Å  Running 007_virtual_id_tables.sql...
+Γ£à Completed 007_virtual_id_tables.sql
+
+Γû╢∩╕Å  Running 008_registration_tables.sql...
+Γ£à Completed 008_registration_tables.sql
+
+Γû╢∩╕Å  Running 009_partner_tables.sql...
+Γ£à Completed 009_partner_tables.sql
+
+Γû╢∩╕Å  Running 010_resident_services_tables.sql...
+Γ£à Completed 010_resident_services_tables.sql
+
+Γ£¿ Database setup completed successfully!

@@ -29,137 +29,125 @@ export default function Home() {
             <Head>
                 <title>DATAKOMEZA - Digital Identity for Refugees</title>
                 <meta name="description" content="Privacy-preserving digital identity platform for refugees and asylum seekers in Africa" />
+                <link rel="preconnect" href="https://fonts.googleapis.com" />
+                <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+                <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
             </Head>
 
-            <div className={styles.container}>
-                {/* Hero Section */}
-                <section className={styles.hero}>
-                    <div className={styles.heroContent}>
-                        <h1 className={styles.heroTitle}>
-                            <span className={styles.gradient}>DATAKOMEZA</span>
-                            <br />
-                            Digital Identity for Refugees
-                        </h1>
-                        <p className={styles.heroSubtitle}>
-                            Secure, privacy-preserving digital identity platform for refugees and asylum seekers in Africa.
-                            Access healthcare, education, and humanitarian services with confidence.
-                        </p>
-                        <div className={styles.heroActions}>
-                            <Link href="/register" className="btn btn-primary btn-lg">
-                                Get Started
-                            </Link>
-                            <Link href="/login" className="btn btn-secondary btn-lg">
-                                Sign In
-                            </Link>
-                        </div>
+            {/* Hero Section */}
+            <section className={styles.hero}>
+                <div className={styles.heroContent}>
+                    <div className={styles.quantumBadge}>
+                        Post-Quantum Security Enabled
                     </div>
-                </section>
+                    <h1 className={styles.title}>
+                        DATAKOMEZA
+                    </h1>
+                    <p className={styles.subtitle}>
+                        Secure, privacy-preserving digital identity platform for refugees and asylum seekers in Africa.
+                        Access healthcare, education, and humanitarian services with confidence.
+                    </p>
+                    <div className={styles.ctaButtons}>
+                        <Link href="/register" className={styles.btnPrimary}>
+                            Get Started →
+                        </Link>
+                        <Link href="/login" className={styles.btnSecondary}>
+                            Sign In
+                        </Link>
+                    </div>
+                </div>
+            </section>
 
-                {/* Features Section */}
-                <section className={styles.features}>
-                    <h2 className="text-center mb-3">Why Choose DATAKOMEZA?</h2>
-                    <div className="grid grid-3 gap-2">
-                        <div className="card">
-                            <div className={styles.featureIcon}>🔒</div>
-                            <h3>Privacy First</h3>
-                            <p className="text-muted">
-                                End-to-end encryption ensures your sensitive data remains private and secure.
+            {/* Features Section */}
+            <section className={styles.features}>
+                <div className={styles.featuresContainer}>
+                    <h2 className={styles.sectionTitle}>Why Choose DATAKOMEZA?</h2>
+                    <p className={styles.sectionSubtitle}>
+                        Built with cutting-edge technology to protect your identity and empower your future
+                    </p>
+                    <div className={styles.featuresGrid}>
+                        <div className={styles.featureCard}>
+                            <span className={styles.featureIcon}>🔒</span>
+                            <h3 className={styles.featureTitle}>Privacy First</h3>
+                            <p className={styles.featureDescription}>
+                                End-to-end encryption with post-quantum cryptography ensures your sensitive data remains private and secure.
                             </p>
                         </div>
-                        <div className="card">
-                            <div className={styles.featureIcon}>🤝</div>
-                            <h3>Consent-Based</h3>
-                            <p className="text-muted">
-                                You control what information you share and with whom. Revoke access anytime.
+                        <div className={styles.featureCard}>
+                            <span className={styles.featureIcon}>🤝</span>
+                            <h3 className={styles.featureTitle}>Consent-Based</h3>
+                            <p className={styles.featureDescription}>
+                                You control what information you share and with whom. Revoke access anytime with a single click.
                             </p>
                         </div>
-                        <div className="card">
-                            <div className={styles.featureIcon}>📱</div>
-                            <h3>Offline Ready</h3>
-                            <p className="text-muted">
+                        <div className={styles.featureCard}>
+                            <span className={styles.featureIcon}>📱</span>
+                            <h3 className={styles.featureTitle}>Offline Ready</h3>
+                            <p className={styles.featureDescription}>
                                 QR code and PIN-based authentication works even without internet connection.
                             </p>
                         </div>
-                        <div className="card">
-                            <div className={styles.featureIcon}>🏥</div>
-                            <h3>Healthcare Access</h3>
-                            <p className="text-muted">
-                                Securely share medical information with healthcare providers.
+                        <div className={styles.featureCard}>
+                            <span className={styles.featureIcon}>🏥</span>
+                            <h3 className={styles.featureTitle}>Healthcare Access</h3>
+                            <p className={styles.featureDescription}>
+                                Securely share medical information with healthcare providers while maintaining full control.
                             </p>
                         </div>
-                        <div className="card">
-                            <div className={styles.featureIcon}>📚</div>
-                            <h3>Education Services</h3>
-                            <p className="text-muted">
-                                Access educational programs and vocational training opportunities.
+                        <div className={styles.featureCard}>
+                            <span className={styles.featureIcon}>📚</span>
+                            <h3 className={styles.featureTitle}>Education Services</h3>
+                            <p className={styles.featureDescription}>
+                                Access educational programs and vocational training opportunities to build your future.
                             </p>
                         </div>
-                        <div className="card">
-                            <div className={styles.featureIcon}>🌍</div>
-                            <h3>Humanitarian Aid</h3>
-                            <p className="text-muted">
-                                Connect with NGOs and humanitarian organizations for assistance.
+                        <div className={styles.featureCard}>
+                            <span className={styles.featureIcon}>🌍</span>
+                            <h3 className={styles.featureTitle}>Humanitarian Aid</h3>
+                            <p className={styles.featureDescription}>
+                                Connect with NGOs and humanitarian organizations for essential assistance.
                             </p>
                         </div>
                     </div>
-                </section>
+                </div>
+            </section>
 
-                {/* How It Works */}
-                <section className={styles.howItWorks}>
-                    <h2 className="text-center mb-3">How It Works</h2>
-                    <div className={styles.steps}>
-                        <div className={styles.step}>
-                            <div className={styles.stepNumber}>1</div>
-                            <h3>Register</h3>
-                            <p>Create your digital identity with minimal personal information</p>
-                        </div>
-                        <div className={styles.stepArrow}>→</div>
-                        <div className={styles.step}>
-                            <div className={styles.stepNumber}>2</div>
-                            <h3>Control</h3>
-                            <p>Manage your data and grant consent to service providers</p>
-                        </div>
-                        <div className={styles.stepArrow}>→</div>
-                        <div className={styles.step}>
-                            <div className={styles.stepNumber}>3</div>
-                            <h3>Access</h3>
-                            <p>Use QR code or PIN to access essential services securely</p>
-                        </div>
+            {/* Stats Section */}
+            <section className={styles.stats}>
+                <div className={styles.statsGrid}>
+                    <div className={styles.statCard}>
+                        <div className={styles.statNumber}>10K+</div>
+                        <div className={styles.statLabel}>Refugees Registered</div>
                     </div>
-                </section>
+                    <div className={styles.statCard}>
+                        <div className={styles.statNumber}>50+</div>
+                        <div className={styles.statLabel}>Service Providers</div>
+                    </div>
+                    <div className={styles.statCard}>
+                        <div className={styles.statNumber}>99.9%</div>
+                        <div className={styles.statLabel}>Uptime</div>
+                    </div>
+                    <div className={styles.statCard}>
+                        <div className={styles.statNumber}>24/7</div>
+                        <div className={styles.statLabel}>Support</div>
+                    </div>
+                </div>
+            </section>
 
-                {/* CTA Section */}
-                <section className={styles.cta}>
-                    <div className="card">
-                        <h2>Ready to Get Started?</h2>
-                        <p className="text-muted mb-2">
-                            Join thousands of refugees who have already secured their digital identity with DATAKOMEZA.
-                        </p>
-                        <Link href="/register" className="btn btn-primary btn-lg">
-                            Create Your Identity
+            {/* CTA Section */}
+            <section className={styles.cta}>
+                <div className={styles.ctaContent}>
+                    <h2 className={styles.ctaTitle}>Ready to Get Started?</h2>
+                    <p className={styles.ctaText}>
+                        Join thousands of refugees who have already secured their digital identity with DATAKOMEZA.
+                    </p>
+                    <div className={styles.ctaButtons}>
+                        <Link href="/register" className={styles.btnPrimary}>
+                            Create Your Identity →
                         </Link>
                     </div>
-                </section>
-
-                {/* Footer */}
-                <footer className={styles.footer}>
-                    <div className={styles.footerContent}>
-                        <div>
-                            <h4>DATAKOMEZA</h4>
-                            <p className="text-muted">Privacy-preserving digital identity for refugees</p>
-                        </div>
-                        <div className={styles.footerLinks}>
-                            <Link href="/about">About</Link>
-                            <Link href="/privacy">Privacy Policy</Link>
-                            <Link href="/terms">Terms of Service</Link>
-                            <Link href="/admin/login">Admin Login</Link>
-                        </div>
-                    </div>
-                    <div className={styles.footerBottom}>
-                        <p className="text-muted">© 2026 DATAKOMEZA. Built with ❤️ for refugees in Africa.</p>
-                    </div>
-                </footer>
-            </div>
+                </div>
+            </section>
         </>
     );
 }

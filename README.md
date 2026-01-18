@@ -4,7 +4,7 @@
 
 ## 🌍 Overview
 
-DATAKOMEZA is aA privacy-preserving digital identity platform for refugees and asylum seekers in Africa, featuring **post-quantum cryptography** and complete **MOSIP integration**.
+DATAKOMEZA is a privacy-preserving digital identity platform for refugees and asylum seekers in Africa, featuring **post-quantum cryptography** and complete **MOSIP integration**.
 
 ## 📸 Platform Screenshots
 
@@ -94,8 +94,8 @@ DATAKOMEZA/
 
 1. **Clone the repository**
 ```bash
-git clone https://github.com/your-org/datakomeza.git
-cd datakomeza
+git clone https://github.com/AROSTA-MOSTER/DATAKOMEZA.git
+cd DATAKOMEZA
 ```
 
 2. **Install dependencies**
@@ -310,7 +310,7 @@ This project is licensed under the MIT License - see [LICENSE](./LICENSE) file f
 ## 🆘 Support
 
 - **Documentation**: [docs/](./docs/)
-- **Issues**: [GitHub Issues](https://github.com/your-org/datakomeza/issues)
+- **Issues**: [GitHub Issues](https://github.com/AROSTA-MOSTER/DATAKOMEZA/issues)
 - **Email**: support@datakomeza.org
 
 ## 🙏 Acknowledgments

@@ -1,0 +1,327 @@
+/* Authentication Controls Styles */
+
+.authControls {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.header {
+    margin-bottom: 2rem;
+}
+
+.header h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #1f2937;
+    margin: 0 0 0.5rem 0;
+}
+
+.subtitle {
+    color: #6b7280;
+    font-size: 1.125rem;
+    margin: 0;
+}
+
+.error {
+    background-color: #fee2e2;
+    border-left: 4px solid #ef4444;
+    color: #991b1b;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.success {
+    background-color: #d1fae5;
+    border-left: 4px solid #10b981;
+    color: #065f46;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.controlsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.controlCard {
+    background: white;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.controlCard:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+.biometricCard {
+    grid-column: 1 / -1;
+}
+
+.cardHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.iconLabel {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.icon {
+    font-size: 2rem;
+}
+
+.cardHeader h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #1f2937;
+    margin: 0;
+}
+
+.statusBadge {
+    padding: 0.375rem 0.875rem;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.statusBadge[data-locked="false"] {
+    background-color: #d1fae5;
+    color: #065f46;
+}
+
+.statusBadge[data-locked="true"] {
+    background-color: #fee2e2;
+    color: #991b1b;
+}
+
+.cardBody {
+    margin-bottom: 1rem;
+}
+
+.description {
+    color: #6b7280;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.cardActions {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.btnLock,
+.btnUnlock {
+    flex: 1;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btnLock {
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    color: white;
+}
+
+.btnLock:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4);
+}
+
+.btnUnlock {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    color: white;
+}
+
+.btnUnlock:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
+}
+
+.btnLock:disabled,
+.btnUnlock:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.modalitiesGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.modalityItem {
+    background: #f9fafb;
+    border-radius: 0.75rem;
+    padding: 1rem;
+    border: 2px solid #e5e7eb;
+    transition: all 0.3s ease;
+}
+
+.modalityItem:hover {
+    border-color: #667eea;
+    background: white;
+}
+
+.modalityHeader {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+}
+
+.modalityIcon {
+    font-size: 1.5rem;
+}
+
+.modalityLabel {
+    flex: 1;
+    font-weight: 600;
+    color: #374151;
+}
+
+.statusDot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.statusDot[data-locked="false"] {
+    background-color: #10b981;
+    box-shadow: 0 0 8px rgba(16, 185, 129, 0.5);
+}
+
+.statusDot[data-locked="true"] {
+    background-color: #ef4444;
+    box-shadow: 0 0 8px rgba(239, 68, 68, 0.5);
+}
+
+.btnLockSmall,
+.btnUnlockSmall {
+    width: 100%;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btnLockSmall {
+    background: #ef4444;
+    color: white;
+}
+
+.btnLockSmall:hover {
+    background: #dc2626;
+}
+
+.btnUnlockSmall {
+    background: #10b981;
+    color: white;
+}
+
+.btnUnlockSmall:hover {
+    background: #059669;
+}
+
+.btnLockSmall:disabled,
+.btnUnlockSmall:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.historySection {
+    background: white;
+    border-radius: 1rem;
+    padding: 2rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.historySection h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #1f2937;
+    margin: 0 0 1.5rem 0;
+}
+
+.historyList {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.historyItem {
+    padding: 1rem;
+    background: #f9fafb;
+    border-radius: 0.5rem;
+    border-left: 4px solid #e5e7eb;
+}
+
+.historyInfo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.historyType {
+    font-weight: 600;
+    color: #374151;
+    text-transform: capitalize;
+}
+
+.historyStatus {
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.historyStatus[data-locked="true"] {
+    background-color: #fee2e2;
+    color: #991b1b;
+}
+
+.historyStatus[data-locked="false"] {
+    background-color: #d1fae5;
+    color: #065f46;
+}
+
+.historyTime {
+    color: #6b7280;
+    font-size: 0.875rem;
+}
+
+@media (max-width: 768px) {
+    .authControls {
+        padding: 1rem;
+    }
+
+    .controlsGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .modalitiesGrid {
+        grid-template-columns: 1fr;
+    }
+}
