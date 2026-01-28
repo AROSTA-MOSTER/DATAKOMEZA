@@ -15,6 +15,38 @@
 
 ---
 
+## 📸 Platform Screenshots
+
+<div align="center">
+
+### Landing Page
+![DATAKOMEZA Landing Page](./docs/images/landing-page.png)
+*Modern glassmorphism design with floating particles animation*
+
+### Login Interface
+![Login Page](./docs/images/login-page.png)
+*Quantum-safe authentication with PIN-based login*
+
+### User Dashboard
+![User Dashboard](./docs/images/user-dashboard.png)
+*Personal identity card with QR code and consent management*
+
+### Admin Dashboard
+![Admin Dashboard](./docs/images/admin-dashboard.png)
+*Registration queue, biometric capture, and user management*
+
+### Security Features
+![Security Features](./docs/images/security-features.png)
+*Post-quantum cryptography and multi-layer protection*
+
+### Mobile View
+![Mobile Interface](./docs/images/mobile-view.png)
+*Fully responsive design for field operations*
+
+</div>
+
+---
+
 ## 🌍 Overview
 
 **DATAKOMEZA** (meaning "to continue" in Kinyarwanda) is a comprehensive digital identity solution designed specifically for refugees and asylum seekers in Africa. The platform provides a secure, privacy-preserving way to:
