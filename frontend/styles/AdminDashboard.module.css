@@ -299,6 +299,300 @@
     font-size: 0.75rem;
 }
 
+/* Admin Profile */
+.adminProfile {
+    padding: 1rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.adminAvatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: white;
+}
+
+.adminName {
+    color: white;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.logoutButton {
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.75rem;
+    cursor: pointer;
+    padding: 0;
+}
+
+.logoutButton:hover {
+    color: white;
+}
+
+/* Badges */
+.badge {
+    background: #22c55e;
+    color: white;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 11px;
+    font-weight: 600;
+    margin-left: 8px;
+}
+
+.badgeRed {
+    background: #ef4444;
+    color: white;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 11px;
+    font-weight: 600;
+    margin-left: 8px;
+}
+
+/* Admin Content */
+.adminContent {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    padding: 1.5rem;
+}
+
+/* Stats Grid */
+.statsGrid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.statCard {
+    background: linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%);
+    border-radius: 16px;
+    padding: 1.5rem;
+    text-align: center;
+    color: white;
+}
+
+.statCard:nth-child(2) {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+}
+
+.statCard:nth-child(3) {
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+}
+
+.statCard:nth-child(4) {
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+}
+
+.statValue {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin: 0.5rem 0;
+}
+
+/* Quick Actions */
+.quickActions {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    padding: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.quickActions h3 {
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0 0 1rem 0;
+}
+
+.quickActions .actionButtons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+}
+
+.quickActions .actionButtons button {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+    color: white;
+    padding: 1rem;
+    border-radius: 12px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.quickActions .actionButtons button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+}
+
+/* Data Table */
+.dataTable {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.dataTable thead tr {
+    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.dataTable th {
+    padding: 1rem 0.75rem;
+    text-align: left;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.8);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.dataTable tbody tr {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: background 0.2s;
+}
+
+.dataTable tbody tr:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.dataTable td {
+    padding: 1rem 0.75rem;
+    color: white;
+    font-size: 0.875rem;
+}
+
+.emptyRow {
+    text-align: center;
+    color: rgba(255, 255, 255, 0.5);
+    padding: 3rem 1rem !important;
+    font-style: italic;
+}
+
+.matchInfo {
+    max-width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #fbbf24;
+}
+
+.logDetails {
+    max-width: 300px;
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.6);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Action Buttons in Tables */
+.actionButtons {
+    display: flex;
+    gap: 8px;
+}
+
+.viewBtn {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.viewBtn:hover {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+.approveBtn {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    border: none;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.approveBtn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(16, 185, 129, 0.4);
+}
+
+.captureBtn {
+    background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+    border: none;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.captureBtn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(139, 92, 246, 0.4);
+}
+
+.resolveBtn {
+    background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+    border: none;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.resolveBtn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(6, 182, 212, 0.4);
+}
+
+.issueBtn {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.issueBtn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.4);
+}
+
 /* Responsive */
 @media (max-width: 1024px) {
     .adminStatsRow {
@@ -307,6 +601,14 @@
 
     .analyticsSection {
         grid-template-columns: 1fr;
+    }
+
+    .statsGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .quickActions .actionButtons {
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
@@ -328,5 +630,17 @@
 
     .adminStatsRow {
         grid-template-columns: 1fr;
+    }
+
+    .statsGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .quickActions .actionButtons {
+        grid-template-columns: 1fr;
+    }
+
+    .actionButtons {
+        flex-direction: column;
     }
 }
