@@ -1,0 +1,102 @@
+.particlesContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.particle {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(40px);
+    opacity: 0.6;
+    animation: float 20s infinite ease-in-out;
+}
+
+.particle1 {
+    width: 150px;
+    height: 150px;
+    background: radial-gradient(circle, rgba(102, 126, 234, 0.8), transparent);
+    top: 10%;
+    left: 10%;
+    animation-delay: 0s;
+    animation-duration: 15s;
+}
+
+.particle2 {
+    width: 100px;
+    height: 100px;
+    background: radial-gradient(circle, rgba(240, 147, 251, 0.6), transparent);
+    top: 60%;
+    right: 15%;
+    animation-delay: 2s;
+    animation-duration: 18s;
+}
+
+.particle3 {
+    width: 120px;
+    height: 120px;
+    background: radial-gradient(circle, rgba(79, 172, 254, 0.7), transparent);
+    bottom: 20%;
+    left: 20%;
+    animation-delay: 4s;
+    animation-duration: 20s;
+}
+
+.particle4 {
+    width: 80px;
+    height: 80px;
+    background: radial-gradient(circle, rgba(0, 242, 254, 0.5), transparent);
+    top: 30%;
+    right: 25%;
+    animation-delay: 1s;
+    animation-duration: 16s;
+}
+
+.particle5 {
+    width: 110px;
+    height: 110px;
+    background: radial-gradient(circle, rgba(118, 75, 162, 0.6), transparent);
+    bottom: 40%;
+    right: 10%;
+    animation-delay: 3s;
+    animation-duration: 19s;
+}
+
+.particle6 {
+    width: 90px;
+    height: 90px;
+    background: radial-gradient(circle, rgba(245, 87, 108, 0.5), transparent);
+    top: 50%;
+    left: 30%;
+    animation-delay: 5s;
+    animation-duration: 17s;
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translate(0, 0) scale(1);
+        opacity: 0.6;
+    }
+
+    25% {
+        transform: translate(30px, -40px) scale(1.1);
+        opacity: 0.8;
+    }
+
+    50% {
+        transform: translate(-20px, 30px) scale(0.9);
+        opacity: 0.5;
+    }
+
+    75% {
+        transform: translate(40px, 20px) scale(1.05);
+        opacity: 0.7;
+    }
+}

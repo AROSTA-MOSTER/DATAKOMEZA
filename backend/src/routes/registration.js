@@ -49,7 +49,7 @@ router.post('/operator/login',
  * @access  Private (Operator)
  */
 router.post('/packet/create',
-    auth,
+    auth.authenticateToken,
     [
         body('operatorId').isInt().withMessage('Operator ID is required'),
         body('demographicData').isObject().withMessage('Demographic data is required'),
@@ -85,7 +85,7 @@ router.post('/packet/create',
  * @desc    Submit packet for supervisor review
  * @access  Private (Operator)
  */
-router.post('/packet/:packetId/submit', auth, async (req, res) => {
+router.post('/packet/:packetId/submit', auth.authenticateToken, async (req, res) => {
     try {
         const { packetId } = req.params;
         const { operatorId } = req.body;
@@ -108,7 +108,7 @@ router.post('/packet/:packetId/submit', auth, async (req, res) => {
  * @access  Private (Supervisor)
  */
 router.post('/packet/:packetId/review',
-    auth,
+    auth.authenticateToken,
     [
         body('supervisorId').isInt().withMessage('Supervisor ID is required'),
         body('approved').isBoolean().withMessage('Approval status is required'),
@@ -147,7 +147,7 @@ router.post('/packet/:packetId/review',
  * @desc    Upload packet to server
  * @access  Private (Operator)
  */
-router.post('/packet/:packetId/upload', auth, async (req, res) => {
+router.post('/packet/:packetId/upload', auth.authenticateToken, async (req, res) => {
     try {
         const { packetId } = req.params;
 
@@ -168,7 +168,7 @@ router.post('/packet/:packetId/upload', auth, async (req, res) => {
  * @desc    Generate acknowledgement slip
  * @access  Private (Operator)
  */
-router.post('/packet/:packetId/acknowledgement', auth, async (req, res) => {
+router.post('/packet/:packetId/acknowledgement', auth.authenticateToken, async (req, res) => {
     try {
         const { packetId } = req.params;
 
@@ -189,7 +189,7 @@ router.post('/packet/:packetId/acknowledgement', auth, async (req, res) => {
  * @desc    Get packets for operator
  * @access  Private (Operator)
  */
-router.get('/packets/operator/:operatorId', auth, async (req, res) => {
+router.get('/packets/operator/:operatorId', auth.authenticateToken, async (req, res) => {
     try {
         const { operatorId } = req.params;
         const { status } = req.query;
@@ -214,7 +214,7 @@ router.get('/packets/operator/:operatorId', auth, async (req, res) => {
  * @desc    Get packets for supervisor review
  * @access  Private (Supervisor)
  */
-router.get('/packets/review', auth, async (req, res) => {
+router.get('/packets/review', auth.authenticateToken, async (req, res) => {
     try {
         const packets = await registrationService.getPacketsForReview(req.user.id);
 

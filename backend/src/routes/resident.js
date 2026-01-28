@@ -16,7 +16,7 @@ const logger = require('../utils/logger');
  * @access  Private
  */
 router.post('/auth/lock',
-    auth,
+    auth.authenticateToken,
     [
         body('userId').notEmpty().withMessage('User ID is required'),
         body('authType').isIn(['biometric', 'otp', 'demographic', 'all']).withMessage('Invalid auth type'),
@@ -62,7 +62,7 @@ router.post('/auth/lock',
  * @access  Private
  */
 router.post('/auth/unlock',
-    auth,
+    auth.authenticateToken,
     [
         body('userId').notEmpty().withMessage('User ID is required'),
         body('authType').isIn(['biometric', 'otp', 'demographic', 'all']).withMessage('Invalid auth type'),
@@ -105,7 +105,7 @@ router.post('/auth/unlock',
  * @desc    Get authentication locks for user
  * @access  Private
  */
-router.get('/auth/locks/:userId', auth, async (req, res) => {
+router.get('/auth/locks/:userId', auth.authenticateToken, async (req, res) => {
     try {
         const { userId } = req.params;
 
@@ -136,7 +136,7 @@ router.get('/auth/locks/:userId', auth, async (req, res) => {
  * @access  Private
  */
 router.post('/service-request',
-    auth,
+    auth.authenticateToken,
     [
         body('userId').notEmpty().withMessage('User ID is required'),
         body('requestType').isIn([
@@ -185,7 +185,7 @@ router.post('/service-request',
  * @desc    Get service requests for user
  * @access  Private
  */
-router.get('/service-requests/:userId', auth, async (req, res) => {
+router.get('/service-requests/:userId', auth.authenticateToken, async (req, res) => {
     try {
         const { userId } = req.params;
         const status = req.query.status;
@@ -225,7 +225,7 @@ router.get('/service-requests/:userId', auth, async (req, res) => {
  * @desc    Get transaction history for user
  * @access  Private
  */
-router.get('/transactions/:userId', auth, async (req, res) => {
+router.get('/transactions/:userId', auth.authenticateToken, async (req, res) => {
     try {
         const { userId } = req.params;
         const limit = parseInt(req.query.limit) || 50;
@@ -268,7 +268,7 @@ router.get('/transactions/:userId', auth, async (req, res) => {
  * @access  Private
  */
 router.post('/verify/phone',
-    auth,
+    auth.authenticateToken,
     [
         body('userId').notEmpty().withMessage('User ID is required'),
         body('phone').isMobilePhone().withMessage('Valid phone number is required')
@@ -318,7 +318,7 @@ router.post('/verify/phone',
  * @access  Private
  */
 router.post('/verify/email',
-    auth,
+    auth.authenticateToken,
     [
         body('userId').notEmpty().withMessage('User ID is required'),
         body('email').isEmail().withMessage('Valid email is required')
@@ -368,7 +368,7 @@ router.post('/verify/email',
  * @access  Private
  */
 router.post('/data-update',
-    auth,
+    auth.authenticateToken,
     [
         body('userId').notEmpty().withMessage('User ID is required'),
         body('updateType').isIn(['demographic', 'contact', 'address', 'document']).withMessage('Invalid update type'),

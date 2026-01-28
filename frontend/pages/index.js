@@ -8,6 +8,7 @@ import Link from 'next/link';
 import { useAuth } from '../context/AuthContext';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
+import QuantumBadge from '../components/QuantumBadge';
 import styles from '../styles/Home.module.css';
 
 export default function Home() {
@@ -37,29 +38,29 @@ export default function Home() {
             {/* Hero Section */}
             <section className={styles.hero}>
                 <div className={styles.heroContent}>
-                    <div className={styles.quantumBadge}>
-                        Post-Quantum Security Enabled
-                    </div>
                     <h1 className={styles.title}>
-                        DATAKOMEZA
+                        DATAKOMEZA - Digital Identity for Refugees
                     </h1>
                     <p className={styles.subtitle}>
                         Secure, privacy-preserving digital identity platform for refugees and asylum seekers in Africa.
                         Access healthcare, education, and humanitarian services with confidence.
                     </p>
+                    <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '2rem' }}>
+                        <QuantumBadge text="Quantum-Resistant" size="medium" />
+                    </div>
                     <div className={styles.ctaButtons}>
                         <Link href="/register" className={styles.btnPrimary}>
                             Get Started →
                         </Link>
-                        <Link href="/login" className={styles.btnSecondary}>
-                            Sign In
+                        <Link href="#features" className={styles.btnSecondary}>
+                            Learn More
                         </Link>
                     </div>
                 </div>
             </section>
 
             {/* Features Section */}
-            <section className={styles.features}>
+            <section id="features" className={styles.features}>
                 <div className={styles.featuresContainer}>
                     <h2 className={styles.sectionTitle}>Why Choose DATAKOMEZA?</h2>
                     <p className={styles.sectionSubtitle}>

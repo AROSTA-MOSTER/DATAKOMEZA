@@ -1,197 +1,284 @@
 # DATAKOMEZA - Digital Identity Platform for Refugees
 
-![DATAKOMEZA Logo](./docs/logo.png)
+<div align="center">
+
+![DATAKOMEZA](https://img.shields.io/badge/DATAKOMEZA-Digital_Identity-6366f1?style=for-the-badge&logo=shield&logoColor=white)
+![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
+![Status](https://img.shields.io/badge/Status-Production_Ready-success?style=for-the-badge)
+![MOSIP](https://img.shields.io/badge/MOSIP-Compliant-blue?style=for-the-badge)
+
+**A MOSIP-aligned foundational identity platform enabling refugees and vulnerable populations to access humanitarian services through secure digital credentials.**
+
+[Features](#-key-features) • [Workflow](#-identity-registration-workflow) • [Quick Start](#-quick-start) • [API Reference](#-api-reference) • [Contributing](#-contributing)
+
+</div>
+
+---
 
 ## 🌍 Overview
 
-DATAKOMEZA is a privacy-preserving digital identity platform for refugees and asylum seekers in Africa, featuring **post-quantum cryptography** and complete **MOSIP integration**.
+**DATAKOMEZA** (meaning "to continue" in Kinyarwanda) is a comprehensive digital identity solution designed specifically for refugees and asylum seekers in Africa. The platform provides a secure, privacy-preserving way to:
 
-## 📸 Platform Screenshots
+- ✅ **Establish legal identity** without relying on lost or inaccessible documents
+- ✅ **Access essential services** (healthcare, education, humanitarian aid)
+- ✅ **Prevent fraud** through biometric deduplication
+- ✅ **Maintain privacy** with consent-based data sharing
+- ✅ **Operate offline** in low-connectivity environments
 
-### Landing Page
-![DATAKOMEZA Landing Page](./docs/images/landing-page.png)
+### Why DATAKOMEZA?
 
-### Login Interface
-![Login Page](./docs/images/login-page.png)
+| Challenge | DATAKOMEZA Solution |
+|-----------|---------------------|
+| 1 billion people lack official ID | Foundational ID for displaced populations |
+| Lost/destroyed identity documents | Digital credentials with biometric verification |
+| Duplicate beneficiary registrations | ABIS-powered deduplication |
+| Privacy concerns with data sharing | Consent-based attribute sharing |
+| No internet in remote camps | QR code + PIN offline authentication |
 
-### User Dashboard
-![User Dashboard](./docs/images/user-dashboard.png)
+---
 
-### Admin Dashboard
-![Admin Dashboard](./docs/images/admin-dashboard.png)
+## 🔑 Key Features
 
-### Mobile View
-![Mobile Interface](./docs/images/mobile-view.png)
+### 🆔 MOSIP-Aligned Identity Lifecycle
+Complete implementation of the MOSIP (Modular Open Source Identity Platform) identity management framework:
+- Pre-enrolment demographic capture
+- Admin review and approval workflow
+- Biometric capture (face, fingerprints, iris, signature)
+- ABIS deduplication check
+- Digital credential issuance with QR codes
 
-  - MockMDS for biometric capture (Fingerprint, Iris, Face)
-  - mock-abis for deduplication and duplicate detection
-  - mock-sdk for quality checks and biometric matching
-  - mock-mv for master data validation
-- 🤝 **Consent-Based Sharing**: Users control what information they share and with whom
-- 📱 **Offline Ready**: QR code and PIN-based authentication works without internet
-- 🏥 **Service Integration**: Healthcare, Education, Humanitarian Aid, Livelihoods
-- 📊 **Admin Dashboard**: For NGOs and government service providers
-- 📝 **Audit Trails**: Complete logging for privacy compliance
-- 🔒 **Biometric Security**: Multi-modal biometric authentication
-- ✅ **Deduplication**: Prevents duplicate registrations using ABIS
-- 🛡️ **Rate Limiting**: Multi-layer protection against abuse and DDoS attacks
+### 🔐 Post-Quantum Cryptography
+**Industry-first** quantum-resistant security:
+- **CRYSTALS-Kyber** for key encapsulation
+- **CRYSTALS-Dilithium** for digital signatures
+- **AES-256-GCM** + quantum-safe hybrid encryption
+- Future-proof against quantum computer attacks
 
-## 🔒 Security Features
+### 📱 Multi-Channel Authentication
+- QR code scanning for instant verification
+- PIN-based offline authentication
+- Biometric verification (1:1 matching)
+- OTP as secondary factor
 
-DATAKOMEZA implements **enterprise-grade + post-quantum security**:
+### 🏥 Service Integration
+Pre-built integrations for:
+- Healthcare providers
+- Educational institutions
+- Humanitarian aid organizations
+- Financial services (KYC)
 
-### Post-Quantum Cryptography ⭐ **INDUSTRY-FIRST**
-- **Hybrid Encryption**: Classical AES-256-GCM + CRYSTALS-Kyber (NIST PQC)
-- **Quantum-Resistant Signatures**: CRYSTALS-Dilithium
-- **Quantum-Safe Hashing**: SHA3-512
-- **Future-Proof**: Protected against quantum computers expected by 2030-2040
-- **NIST Standards**: Based on NIST Post-Quantum Cryptography finalists
+---
 
-### Classical Security
-- **Encryption**: AES-256-GCM for data at rest, TLS 1.3 for data in transit
-- **Authentication**: JWT tokens with bcrypt password hashing
-- **Authorization**: Role-based access control (RBAC)
-- **Rate Limiting**: Protection against brute force and DDoS attacks
-  - General API: 100 requests per 15 minutes
-  - Authentication: 5 attempts per 15 minutes
-  - MOSIP Operations: 10 per hour
-- **Input Validation**: Comprehensive validation with express-validator
-- **SQL Injection Prevention**: Parameterized queries throughout
-- **XSS Protection**: Security headers via helmet.js
-- **Audit Logging**: Complete activity trail for compliance
-- **Privacy by Design**: GDPR-compliant consent management
+## 🔄 Identity Registration Workflow
 
-### Security Guarantees
-- ✅ Protected against classical attacks (brute force, cryptanalysis)
-- ✅ Protected against quantum attacks (Shor's, Grover's algorithms)
-- ✅ Long-term data security (decades of protection)
-- ✅ NIST compliant post-quantum cryptography
-- ✅ Industry-leading security for refugee data
+DATAKOMEZA implements a 4-phase MOSIP-compliant registration process:
 
-**See [docs/post-quantum-cryptography.md](./docs/post-quantum-cryptography.md) for details**
+```
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                     DATAKOMEZA IDENTITY LIFECYCLE                           │
+├─────────────────────────────────────────────────────────────────────────────┤
+│                                                                             │
+│  PHASE 1: PRE-ENROLMENT                                                     │
+│  ┌─────────────────────────────────────────────────────────────────────┐   │
+│  │ User submits demographic data via web/mobile:                       │   │
+│  │ • Full name, Date of birth, Gender                                  │   │
+│  │ • Place of birth, Parents' names                                    │   │
+│  │ • Nationality, Marital status                                       │   │
+│  │ • Current address, Contact information                              │   │
+│  │                                                                     │   │
+│  │ Status: PENDING_VERIFICATION                                        │   │
+│  └─────────────────────────────────────────────────────────────────────┘   │
+│                                    ▼                                        │
+│  PHASE 2: ADMIN REVIEW                                                      │
+│  ┌─────────────────────────────────────────────────────────────────────┐   │
+│  │ Registration Officer reviews submitted data:                        │   │
+│  │ • Validate demographic information                                  │   │
+│  │ • Request corrections if needed → User updates → Re-review          │   │
+│  │ • Approve for biometric enrolment                                   │   │
+│  │ • OR Reject with documented reason                                  │   │
+│  │                                                                     │   │
+│  │ Status: APPROVED_FOR_BIOMETRIC or REJECTED                          │   │
+│  └─────────────────────────────────────────────────────────────────────┘   │
+│                                    ▼                                        │
+│  PHASE 3: BIOMETRIC CAPTURE                                                 │
+│  ┌─────────────────────────────────────────────────────────────────────┐   │
+│  │ Supervised in-person biometric enrolment:                           │   │
+│  │ • Face photograph (live capture)                                    │   │
+│  │ • 10 fingerprints with quality check                                │   │
+│  │ • Iris scan (optional)                                              │   │
+│  │ • Digital signature                                                 │   │
+│  │                                                                     │   │
+│  │ Quality Check (SDK) → ABIS Deduplication → Result                   │   │
+│  │                                                                     │   │
+│  │ If duplicate found: Status → FLAGGED_DUPLICATE (manual review)      │   │
+│  │ If unique: Status → BIOMETRICS_VERIFIED                             │   │
+│  └─────────────────────────────────────────────────────────────────────┘   │
+│                                    ▼                                        │
+│  PHASE 4: ID ISSUANCE                                                       │
+│  ┌─────────────────────────────────────────────────────────────────────┐   │
+│  │ Digital credential generation:                                      │   │
+│  │ • Unique MOSIP ID (UIN) assigned                                    │   │
+│  │ • QR code generated for verification                                │   │
+│  │ • Digital credential created                                        │   │
+│  │ • Optional: Physical ID card                                        │   │
+│  │                                                                     │   │
+│  │ Status: ACTIVE_VERIFIED                                             │   │
+│  └─────────────────────────────────────────────────────────────────────┘   │
+│                                                                             │
+└─────────────────────────────────────────────────────────────────────────────┘
+```
+
+### Status Flow Diagram
+
+```
+pending_verification
+        │
+        ├──→ correction_requested ──→ (user updates) ──→ pending_verification
+        │
+        ├──→ rejected
+        │
+        └──→ approved_for_biometric
+                     │
+                     └──→ biometrics_verified ──→ active_verified
+                              │
+                              └──→ flagged_duplicate ──→ (admin resolves) ──→ biometrics_verified / rejected
+```
+
+---
+
+## 🚀 Quick Start
+
+### Option 1: Docker (Recommended)
+
+```bash
+# Clone repository
+git clone https://github.com/AROSTA-MOSTER/DATAKOMEZA.git
+cd DATAKOMEZA
+
+# Start all services
+docker-compose up -d
+
+# Access the application
+# Frontend: http://localhost:3000
+# Backend:  http://localhost:5000
+```
+
+### Option 2: Manual Setup
+
+```bash
+# Clone repository
+git clone https://github.com/AROSTA-MOSTER/DATAKOMEZA.git
+cd DATAKOMEZA
+
+# Install dependencies
+npm run install:all
+
+# Configure environment
+cp backend/.env.example backend/.env
+# Edit backend/.env with your database credentials
+
+# Start development servers
+npm run dev:backend   # Terminal 1: Backend on :5000
+npm run dev:frontend  # Terminal 2: Frontend on :3000
+```
+
+### Default Test Credentials
+
+| Role | Email | Password/PIN |
+|------|-------|--------------|
+| Refugee User | `amina.refugee@example.com` | PIN: `123456` |
+| Admin | `admin@ngo.org` | Password: `Admin@123` |
+
+---
+
+## 📡 API Reference
+
+### Authentication Endpoints
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `POST` | `/api/auth/register` | Submit pre-enrolment request |
+| `POST` | `/api/auth/login` | User login with PIN |
+| `POST` | `/api/auth/admin/login` | Admin login |
+
+### Admin Workflow Endpoints
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `GET` | `/api/admin/users/pending` | List pending registrations |
+| `GET` | `/api/admin/users/:id/details` | Full user details for review |
+| `POST` | `/api/admin/users/:id/request-correction` | Request user to fix fields |
+| `POST` | `/api/admin/users/:id/reject` | Reject registration |
+| `POST` | `/api/admin/users/:id/approve-biometric` | Approve for biometric capture |
+| `POST` | `/api/admin/users/:id/capture-biometrics-full` | Capture biometrics + dedup |
+| `POST` | `/api/admin/users/:id/issue-digital-id` | Issue MOSIP ID + QR |
+| `GET` | `/api/admin/users/flagged-duplicates` | List flagged duplicates |
+| `POST` | `/api/admin/users/:id/resolve-duplicate` | Resolve duplicate case |
+
+### Verification Endpoints
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `POST` | `/api/verification/qr` | Verify QR code token |
+| `POST` | `/api/verification/pin` | Verify PIN offline |
+| `POST` | `/api/authentication/biometric` | Biometric authentication |
+
+---
 
 ## 🏗️ Architecture
 
 ```
 DATAKOMEZA/
-├── frontend/          # Next.js React application
-├── backend/           # Express.js API server
-├── database/          # PostgreSQL schemas and migrations
-├── shared/            # Shared types and utilities
-├── docs/              # Documentation
-└── scripts/           # Setup and deployment scripts
+├── frontend/                    # Next.js 14 + React 18
+│   ├── components/              # Reusable UI components
+│   ├── pages/                   # Route pages
+│   ├── context/                 # Auth context
+│   └── styles/                  # CSS Modules
+│
+├── backend/                     # Express.js API
+│   ├── src/
+│   │   ├── routes/              # API endpoints
+│   │   │   ├── auth.js          # Authentication
+│   │   │   ├── admin.js         # Admin workflow
+│   │   │   ├── users.js         # User profile
+│   │   │   └── verification.js  # Identity verification
+│   │   ├── services/
+│   │   │   ├── mosipMockService.js  # MOSIP integration
+│   │   │   └── authenticationService.js
+│   │   ├── middleware/          # Auth, rate limiting
+│   │   └── utils/               # Encryption, logging
+│   └── .env                     # Environment config
+│
+├── database/
+│   └── migrations/              # SQL schema files
+│       ├── 000_initial_schema.sql
+│       ├── 002_add_preenrolment_fields.sql
+│       └── 003_biometric_records.sql
+│
+└── docker-compose.yml           # Container orchestration
 ```
 
-## 🚀 Quick Start
+---
 
-### Prerequisites
+## 🔒 Security
 
-- Node.js 18+ and npm
-- PostgreSQL 14+
-- Git
+### Encryption
+- **At Rest**: AES-256-GCM with quantum-safe key encapsulation
+- **In Transit**: TLS 1.3
+- **Secrets**: No hardcoded keys - all from environment variables
 
-### Installation
+### Authentication
+- JWT tokens with configurable expiry
+- bcrypt password hashing (cost factor 10)
+- Rate limiting on auth endpoints (5 attempts/15 min)
 
-1. **Clone the repository**
-```bash
-git clone https://github.com/AROSTA-MOSTER/DATAKOMEZA.git
-cd DATAKOMEZA
-```
+### Compliance
+- GDPR-style privacy by design
+- Consent-based data sharing
+- Immutable audit logs
+- UNHCR humanitarian data protection guidelines
 
-2. **Install dependencies**
-```bash
-npm run install:all
-```
-
-3. **Set up the database**
-```bash
-# Start PostgreSQL service
-# Create database
-createdb datakomeza_dev
-
-# Run migrations and seed data
-npm run db:setup
-```
-
-4. **Configure environment variables**
-```bash
-# Copy example env files
-cp backend/.env.example backend/.env
-cp frontend/.env.example frontend/.env
-
-# Edit the .env files with your configuration
-```
-
-5. **Start the development servers**
-```bash
-# Start backend (port 5000)
-npm run dev:backend
-
-# In another terminal, start frontend (port 3000)
-npm run dev:frontend
-```
-
-6. **Access the application**
-- Frontend: http://localhost:3000
-- Backend API: http://localhost:5000
-- API Docs: http://localhost:5000/api-docs
-
-## 📚 Sample Data
-
-The application comes with sample data for testing:
-
-### Sample Users
-- **Refugee User**: 
-  - Email: `amina.refugee@example.com`
-  - PIN: `123456`
-  
-- **Admin User**:
-  - Email: `admin@ngo.org`
-  - Password: `Admin@123`
-
-### Sample Service Providers
-- Healthcare Clinic
-- Education Center
-- Humanitarian Aid Organization
-
-## 🔧 Technology Stack
-
-### Frontend
-- **Framework**: Next.js 14 with React 18
-- **Styling**: CSS Modules with modern design system
-- **State Management**: React Context + Hooks
-- **QR Code**: qrcode.react
-- **HTTP Client**: Axios
-
-### Backend
-- **Runtime**: Node.js 18+
-- **Framework**: Express.js
-- **Database**: PostgreSQL with pg library
-- **Authentication**: JWT + bcrypt
-- **Validation**: express-validator
-- **Encryption**: crypto (built-in)
-
-### Database
-- **Primary**: PostgreSQL 14+
-- **Migrations**: Custom SQL scripts
-- **ORM**: Raw SQL with pg (for performance)
-
-## 📖 Documentation
-
-- [Architecture Overview](./docs/architecture.md)
-- [API Documentation](./docs/api.md)
-- [Security Model](./docs/security.md)
-- [MOSIP Integration](./docs/mosip-integration.md)
-- [Deployment Guide](./docs/deployment.md)
-
-## 🔒 Security Features
-
-1. **End-to-End Encryption**: All sensitive data encrypted at rest and in transit
-2. **Consent Management**: Granular control over data sharing
-3. **Audit Logging**: Complete trail of all data access
-4. **Offline Verification**: QR codes with cryptographic signatures
-5. **PIN Protection**: Secure PIN-based authentication
-6. **Role-Based Access**: Different permissions for users, admins, and service providers
+---
 
 ## 🧪 Testing
 
@@ -199,84 +286,59 @@ The application comes with sample data for testing:
 # Run all tests
 npm test
 
-# Run backend tests
-npm run test:backend
-
-# Run frontend tests
-npm run test:frontend
-
 # Run with coverage
 npm run test:coverage
+
+# Lint code
+npm run lint
 ```
 
-## 📦 Deployment
+---
 
-### Production Build
+## 📝 Environment Variables
 
-```bash
-# Build frontend
-npm run build:frontend
+| Variable | Description | Required |
+|----------|-------------|----------|
+| `JWT_SECRET` | Secret for JWT signing (64+ chars) | ✅ |
+| `ENCRYPTION_KEY` | AES encryption key (32+ chars) | ✅ |
+| `DB_HOST` | PostgreSQL host | ✅ |
+| `DB_PORT` | PostgreSQL port (default: 5432) | ✅ |
+| `DB_USER` | Database username | ✅ |
+| `DB_PASSWORD` | Database password | ✅ |
+| `DB_NAME` | Database name | ✅ |
 
-# Build backend
-npm run build:backend
-```
-
-### Docker Deployment
-
-```bash
-# Build and run with Docker Compose
-docker-compose up -d
-```
-
-### Cloud Deployment
-
-See [Deployment Guide](./docs/deployment.md) for AWS, Azure, and Google Cloud instructions.
-
-## 🚀 Deployment
-
-DATAKOMEZA is production-ready and can be deployed in multiple ways:
-
-## 📚 Documentation
-
-Comprehensive documentation is available:
-
-### Technical Documentation
-- **[docs/architecture.md](./docs/architecture.md)** - System architecture
-- **[docs/api.md](./docs/api.md)** - Complete API reference
-- **[docs/security.md](./docs/security.md)** - Security model and best practices
-- **[docs/mosip-integration.md](./docs/mosip-integration.md)** - MOSIP integration guide
+---
 
 ## 🤝 Contributing
 
 We welcome contributions! Please see [CONTRIBUTING.md](./CONTRIBUTING.md) for guidelines.
 
-## 📄 License
-
-This project is licensed under the MIT License - see [LICENSE](./LICENSE) file for details.
-<<<<<<< HEAD
-
-## 🆘 Support
-
-- **Documentation**: [docs/](./docs/)
-- **Issues**: [GitHub Issues](https://github.com/AROSTA-MOSTER/DATAKOMEZA/issues)
-- **Email**: support@datakomeza.org
-
-=======
->>>>>>> d81b5866cc1ff4e75d2c32b78b4f0a7747c7e92f
-## 🙏 Acknowledgments
-
-- MOSIP Foundation for identity platform standards
-- UNHCR for refugee protection guidelines
-- Open-source community for amazing tools
-
-## 🗺️ Roadmap
-
-- [ ] Biometric authentication integration
-- [ ] Multi-language support (French, Swahili, Arabic)
-- [ ] Mobile app (React Native)
-- [ ] Blockchain-based credential verification
-- [ ] Integration with more service providers
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit changes (`git commit -m 'Add amazing feature'`)
+4. Push to branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
 ---
 
+## 📄 License
+
+This project is licensed under the MIT License - see [LICENSE](./LICENSE) for details.
+
+---
+
+## 🙏 Acknowledgments
+
+- [MOSIP Foundation](https://mosip.io) - Identity platform standards
+- [UNHCR](https://unhcr.org) - Refugee protection guidelines
+- Open-source community for amazing tools
+
+---
+
+<div align="center">
+
 **Built with ❤️ for refugees and asylum seekers in Africa**
+
+[⬆ Back to Top](#datakomeza---digital-identity-platform-for-refugees)
+
+</div>

@@ -14,7 +14,10 @@ const { v4: uuidv4 } = require('uuid');
 
 const router = express.Router();
 
-const JWT_SECRET = process.env.JWT_SECRET || 'your-super-secret-jwt-key';
+const JWT_SECRET = process.env.JWT_SECRET;
+if (!JWT_SECRET) {
+    throw new Error('FATAL: JWT_SECRET environment variable must be set');
+}
 const JWT_EXPIRES_IN = process.env.JWT_EXPIRES_IN || '7d';
 
 /**
@@ -28,8 +31,13 @@ router.post('/register', [
     body('firstName').trim().notEmpty(),
     body('lastName').trim().notEmpty(),
     body('dateOfBirth').optional().isISO8601(),
+    body('placeOfBirth').optional().trim(),
     body('gender').optional().isIn(['Male', 'Female', 'Other']),
-    body('nationality').optional().trim()
+    body('nationality').optional().trim(),
+    body('fatherName').optional().trim(),
+    body('motherName').optional().trim(),
+    body('maritalStatus').optional().isIn(['Single', 'Married', 'Divorced', 'Widowed']),
+    body('currentAddress').optional().trim()
 ], async (req, res) => {
     try {
         // Validate input
@@ -38,7 +46,10 @@ router.post('/register', [
             return res.status(400).json({ success: false, errors: errors.array() });
         }
 
-        const { email, phone, pin, firstName, lastName, dateOfBirth, gender, nationality } = req.body;
+        const {
+            email, phone, pin, firstName, lastName, dateOfBirth, placeOfBirth,
+            gender, nationality, fatherName, motherName, maritalStatus, currentAddress
+        } = req.body;
 
         // Check if user already exists
         const existingUser = await query(
@@ -59,19 +70,21 @@ router.post('/register', [
         // Generate encryption key for user
         const encryptionKey = generateUserKey();
 
-        // Generate MOSIP ID (mock for now)
-        const mosipId = 'MOSIP' + Math.floor(Math.random() * 10000000000).toString().padStart(10, '0');
+        // Initial MOSIP ID is null until approval
+        const mosipId = null;
 
-        // Insert user
+        // Insert user with status PENDING_VERIFICATION
         const result = await query(
             `INSERT INTO users (
         id, mosip_id, email, phone, pin_hash, first_name, last_name,
-        date_of_birth, gender, nationality, encryption_key, status
-      ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)
-      RETURNING id, mosip_id, email, phone, first_name, last_name, created_at`,
+        date_of_birth, place_of_birth, gender, nationality, father_name, mother_name,
+        marital_status, current_address, encryption_key, status
+      ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17)
+      RETURNING id, mosip_id, email, phone, first_name, last_name, status, created_at`,
             [
                 uuidv4(), mosipId, email, phone, pinHash, firstName, lastName,
-                dateOfBirth, gender, nationality, encryptionKey, 'active'
+                dateOfBirth, placeOfBirth, gender, nationality, fatherName, motherName,
+                maritalStatus, currentAddress, encryptionKey, 'pending_verification'
             ]
         );
 
@@ -80,29 +93,28 @@ router.post('/register', [
         // Log audit trail
         await query(
             'INSERT INTO audit_logs (user_id, action, resource_type, details) VALUES ($1, $2, $3, $4)',
-            [user.id, 'user_registered', 'user', JSON.stringify({ method: 'self_registration' })]
+            [user.id, 'registration_request', 'user', JSON.stringify({ method: 'self_registration', status: 'pending_verification' })]
         );
 
-        // Generate JWT token
+        // Generate JWT token (User can login but with restricted access)
         const token = jwt.sign(
-            { userId: user.id, email: user.email, type: 'user' },
+            { userId: user.id, email: user.email, type: 'user', status: 'pending_verification' },
             JWT_SECRET,
             { expiresIn: JWT_EXPIRES_IN }
         );
 
-        logger.info('User registered successfully', { userId: user.id, email: user.email });
+        logger.info('User registration request received', { userId: user.id, email: user.email });
 
         res.status(201).json({
             success: true,
-            message: 'User registered successfully',
+            message: 'Registration request submitted for verification',
             data: {
                 user: {
                     id: user.id,
-                    mosipId: user.mosip_id,
                     email: user.email,
-                    phone: user.phone,
                     firstName: user.first_name,
-                    lastName: user.last_name
+                    lastName: user.last_name,
+                    status: 'pending_verification'
                 },
                 token
             }

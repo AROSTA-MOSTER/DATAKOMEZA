@@ -1,6 +1,6 @@
 /**
  * Registration Page
- * New user registration form
+ * New user registration form with professional design
  */
 
 import { useState } from 'react';
@@ -8,6 +8,8 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useAuth } from '../context/AuthContext';
+import FloatingParticles from '../components/FloatingParticles';
+import QuantumBadge from '../components/QuantumBadge';
 import styles from '../styles/Auth.module.css';
 
 export default function Register() {
@@ -19,8 +21,13 @@ export default function Register() {
         firstName: '',
         lastName: '',
         dateOfBirth: '',
+        placeOfBirth: '',
         gender: '',
-        nationality: ''
+        nationality: '',
+        fatherName: '',
+        motherName: '',
+        maritalStatus: '',
+        currentAddress: ''
     });
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
@@ -59,8 +66,13 @@ export default function Register() {
             firstName: formData.firstName,
             lastName: formData.lastName,
             dateOfBirth: formData.dateOfBirth,
+            placeOfBirth: formData.placeOfBirth,
             gender: formData.gender,
-            nationality: formData.nationality
+            nationality: formData.nationality,
+            fatherName: formData.fatherName,
+            motherName: formData.motherName,
+            maritalStatus: formData.maritalStatus,
+            currentAddress: formData.currentAddress
         });
 
         if (result.success) {
@@ -77,109 +89,106 @@ export default function Register() {
                 <title>Register - DATAKOMEZA</title>
             </Head>
 
-            <div className={styles.container}>
-                <div className={styles.authBox}>
-                    <div className={styles.authHeader}>
-                        <h1>Create Your Identity</h1>
-                        <p className="text-muted">Register for secure digital identity</p>
+            <FloatingParticles />
+
+            <div className={styles.registerContainer}>
+                <div className={styles.registerCard}>
+                    <div className={styles.registerIcon}>
+                        <div className={styles.iconCircle}>
+                            ✨
+                        </div>
+                    </div>
+
+                    <h1 className={styles.registerTitle}>Create Your Identity</h1>
+                    <p className={styles.registerSubtitle}>
+                        Join the secure digital identity platform
+                    </p>
+
+                    <div className={styles.quantumBadgeWrapper}>
+                        <QuantumBadge text="Quantum-Safe" size="small" />
                     </div>
 
                     {error && (
-                        <div className="alert alert-error">
+                        <div className={styles.errorMessage}>
                             {error}
                         </div>
                     )}
 
-                    <form onSubmit={handleSubmit} className={styles.authForm}>
-                        <div className="grid grid-2 gap-2">
-                            <div className="form-group">
-                                <label htmlFor="firstName" className="form-label">
-                                    First Name *
-                                </label>
+                    <form onSubmit={handleSubmit} className={styles.registerForm}>
+                        <div className={styles.formRow}>
+                            <div className={styles.formGroup}>
                                 <input
                                     type="text"
                                     id="firstName"
                                     name="firstName"
-                                    className="form-input"
+                                    className={styles.glassInput}
                                     value={formData.firstName}
                                     onChange={handleChange}
+                                    placeholder="First Name *"
                                     required
                                 />
                             </div>
 
-                            <div className="form-group">
-                                <label htmlFor="lastName" className="form-label">
-                                    Last Name *
-                                </label>
+                            <div className={styles.formGroup}>
                                 <input
                                     type="text"
                                     id="lastName"
                                     name="lastName"
-                                    className="form-input"
+                                    className={styles.glassInput}
                                     value={formData.lastName}
                                     onChange={handleChange}
+                                    placeholder="Last Name *"
                                     required
                                 />
                             </div>
                         </div>
 
-                        <div className="form-group">
-                            <label htmlFor="email" className="form-label">
-                                Email Address *
-                            </label>
+                        <div className={styles.formGroup}>
                             <input
                                 type="email"
                                 id="email"
                                 name="email"
-                                className="form-input"
+                                className={styles.glassInput}
                                 value={formData.email}
                                 onChange={handleChange}
+                                placeholder="Email Address *"
                                 required
                             />
                         </div>
 
-                        <div className="form-group">
-                            <label htmlFor="phone" className="form-label">
-                                Phone Number
-                            </label>
+                        <div className={styles.formGroup}>
                             <input
                                 type="tel"
                                 id="phone"
                                 name="phone"
-                                className="form-input"
+                                className={styles.glassInput}
                                 value={formData.phone}
                                 onChange={handleChange}
-                                placeholder="+250788123456"
+                                placeholder="Phone Number (Optional)"
                             />
                         </div>
 
-                        <div className="grid grid-2 gap-2">
-                            <div className="form-group">
-                                <label htmlFor="dateOfBirth" className="form-label">
-                                    Date of Birth
-                                </label>
+                        <div className={styles.formRow}>
+                            <div className={styles.formGroup}>
                                 <input
                                     type="date"
                                     id="dateOfBirth"
                                     name="dateOfBirth"
-                                    className="form-input"
+                                    className={styles.glassInput}
                                     value={formData.dateOfBirth}
                                     onChange={handleChange}
                                 />
                             </div>
 
-                            <div className="form-group">
-                                <label htmlFor="gender" className="form-label">
-                                    Gender
-                                </label>
+                            <div className={styles.formGroup}>
                                 <select
                                     id="gender"
                                     name="gender"
-                                    className="form-select"
+                                    className={styles.glassSelect}
                                     value={formData.gender}
                                     onChange={handleChange}
                                 >
-                                    <option value="">Select...</option>
+                                    <option value="">Gender</option>
                                     <option value="Male">Male</option>
                                     <option value="Female">Female</option>
                                     <option value="Other">Other</option>
@@ -187,51 +196,111 @@ export default function Register() {
                             </div>
                         </div>
 
-                        <div className="form-group">
-                            <label htmlFor="nationality" className="form-label">
-                                Nationality
-                            </label>
+                        <div className={styles.formGroup}>
                             <input
                                 type="text"
                                 id="nationality"
                                 name="nationality"
-                                className="form-input"
+                                className={styles.glassInput}
                                 value={formData.nationality}
                                 onChange={handleChange}
+                                placeholder="Nationality (Optional)"
                             />
                         </div>
 
-                        <div className="grid grid-2 gap-2">
-                            <div className="form-group">
-                                <label htmlFor="pin" className="form-label">
-                                    Create PIN (6 digits) *
-                                </label>
+                        <div className={styles.formGroup}>
+                            <input
+                                type="text"
+                                id="placeOfBirth"
+                                name="placeOfBirth"
+                                className={styles.glassInput}
+                                value={formData.placeOfBirth}
+                                onChange={handleChange}
+                                placeholder="Place of Birth"
+                            />
+                        </div>
+
+                        <div className={styles.formRow}>
+                            <div className={styles.formGroup}>
+                                <input
+                                    type="text"
+                                    id="fatherName"
+                                    name="fatherName"
+                                    className={styles.glassInput}
+                                    value={formData.fatherName}
+                                    onChange={handleChange}
+                                    placeholder="Father's Full Name"
+                                />
+                            </div>
+
+                            <div className={styles.formGroup}>
+                                <input
+                                    type="text"
+                                    id="motherName"
+                                    name="motherName"
+                                    className={styles.glassInput}
+                                    value={formData.motherName}
+                                    onChange={handleChange}
+                                    placeholder="Mother's Full Name"
+                                />
+                            </div>
+                        </div>
+
+                        <div className={styles.formRow}>
+                            <div className={styles.formGroup}>
+                                <select
+                                    id="maritalStatus"
+                                    name="maritalStatus"
+                                    className={styles.glassSelect}
+                                    value={formData.maritalStatus}
+                                    onChange={handleChange}
+                                >
+                                    <option value="">Marital Status</option>
+                                    <option value="Single">Single</option>
+                                    <option value="Married">Married</option>
+                                    <option value="Divorced">Divorced</option>
+                                    <option value="Widowed">Widowed</option>
+                                </select>
+                            </div>
+
+                            <div className={styles.formGroup}>
+                                <input
+                                    type="text"
+                                    id="currentAddress"
+                                    name="currentAddress"
+                                    className={styles.glassInput}
+                                    value={formData.currentAddress}
+                                    onChange={handleChange}
+                                    placeholder="Current Address"
+                                />
+                            </div>
+                        </div>
+
+                        <div className={styles.formRow}>
+                            <div className={styles.formGroup}>
                                 <input
                                     type="password"
                                     id="pin"
                                     name="pin"
-                                    className="form-input"
+                                    className={styles.glassInput}
                                     value={formData.pin}
                                     onChange={handleChange}
-                                    placeholder="••••••"
+                                    placeholder="Create PIN (6 digits) *"
                                     maxLength="6"
                                     pattern="[0-9]{6}"
                                     required
                                 />
                             </div>
 
-                            <div className="form-group">
-                                <label htmlFor="confirmPin" className="form-label">
-                                    Confirm PIN *
-                                </label>
+                            <div className={styles.formGroup}>
                                 <input
                                     type="password"
                                     id="confirmPin"
                                     name="confirmPin"
-                                    className="form-input"
+                                    className={styles.glassInput}
                                     value={formData.confirmPin}
                                     onChange={handleChange}
-                                    placeholder="••••••"
+                                    placeholder="Confirm PIN *"
                                     maxLength="6"
                                     pattern="[0-9]{6}"
                                     required
@@ -241,22 +310,20 @@ export default function Register() {
 
                         <button
                             type="submit"
-                            className="btn btn-primary"
-                            style={{ width: '100%' }}
+                            className={styles.registerButton}
                             disabled={loading}
                         >
                             {loading ? 'Creating Account...' : 'Create Account'}
                         </button>
                     </form>
 
-                    <div className={styles.authFooter}>
-                        <p className="text-muted">
-                            Already have an account?{' '}
-                            <Link href="/login">Sign in here</Link>
-                        </p>
-                        <p className="text-muted">
-                            <Link href="/">← Back to home</Link>
-                        </p>
+                    <div className={styles.registerFooter}>
+                        <Link href="/login" className={styles.footerLink}>
+                            Already have an account? Sign in
+                        </Link>
+                        <Link href="/" className={styles.footerLink}>
+                            ← Back to home
+                        </Link>
                     </div>
                 </div>
             </div>

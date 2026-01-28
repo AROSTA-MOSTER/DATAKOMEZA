@@ -16,7 +16,7 @@ const logger = require('../utils/logger');
  * @access  Private
  */
 router.post('/generate',
-    auth,
+    auth.authenticateToken,
     [
         body('userId').notEmpty().withMessage('User ID is required'),
         body('vidType').isIn(['temporary', 'permanent', 'perpetual']).withMessage('Invalid VID type'),
@@ -54,7 +54,7 @@ router.post('/generate',
  * @access  Private
  */
 router.post('/revoke',
-    auth,
+    auth.authenticateToken,
     [
         body('userId').notEmpty().withMessage('User ID is required'),
         body('vid').isLength({ min: 16, max: 16 }).withMessage('Invalid VID format'),
@@ -87,7 +87,7 @@ router.post('/revoke',
  * @desc    Get all VIDs for a user
  * @access  Private
  */
-router.get('/list/:userId', auth, async (req, res) => {
+router.get('/list/:userId', auth.authenticateToken, async (req, res) => {
     try {
         const { userId } = req.params;
 
@@ -145,7 +145,7 @@ router.post('/validate',
  * @desc    Get VID usage history
  * @access  Private
  */
-router.get('/usage/:userId', auth, async (req, res) => {
+router.get('/usage/:userId', auth.authenticateToken, async (req, res) => {
     try {
         const { userId } = req.params;
         const { vid } = req.query;

@@ -1,34 +1,32 @@
+/* DATAKOMEZA Dashboard - Light Theme Design */
+
 .dashboard {
     min-height: 100vh;
-    background: var(--background);
+    background: #f9fafb;
+    display: flex;
+    flex-direction: column;
 }
 
 .header {
-    background: var(--surface);
-    border-bottom: 2px solid var(--border);
-    padding: 1rem 0;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    box-shadow: var(--shadow-sm);
+    background: white;
+    border-bottom: 1px solid #e5e7eb;
+    padding: 1rem 2rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
 .headerContent {
     max-width: 1400px;
     margin: 0 auto;
-    padding: 0 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.header h1 {
-    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    margin: 0;
+.headerContent h1 {
     font-size: 1.5rem;
+    font-weight: 700;
+    color: #111827;
+    margin: 0;
 }
 
 .headerActions {
@@ -37,101 +35,414 @@
     gap: 1rem;
 }
 
+.quantumSecureBadge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.375rem 0.875rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
 .container {
+    display: flex;
+    flex: 1;
     max-width: 1400px;
     margin: 0 auto;
-    padding: 2rem;
-    display: grid;
-    grid-template-columns: 250px 1fr;
-    gap: 2rem;
+    width: 100%;
 }
 
 .sidebar {
-    position: sticky;
-    top: 100px;
-    height: fit-content;
+    width: 250px;
+    background: white;
+    border-right: 1px solid #e5e7eb;
+    padding: 2rem 0;
 }
 
 .nav {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+    padding: 0 1rem;
 }
 
 .navItem,
 .navItemActive {
-    padding: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.875rem 1rem;
     border: none;
-    background: var(--surface);
-    color: var(--text-primary);
-    text-align: left;
-    border-radius: var(--radius-md);
-    cursor: pointer;
-    transition: all var(--transition-fast);
-    font-size: 1rem;
+    background: transparent;
+    color: #6b7280;
+    font-size: 0.9375rem;
     font-weight: 500;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: left;
 }
 
 .navItem:hover {
-    background: var(--surface-hover);
-    transform: translateX(5px);
+    background: #f3f4f6;
+    color: #111827;
 }
 
 .navItemActive {
-    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
-    box-shadow: var(--shadow-md);
 }
 
 .main {
-    min-height: 500px;
+    flex: 1;
+    padding: 2rem;
+    overflow-y: auto;
+}
+
+/* Profile Card */
+.profileCard {
+    background: white;
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+}
+
+.profileHeader {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.profilePhoto {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: white;
+    font-weight: 600;
+}
+
+.profileInfo h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #111827;
+    margin: 0 0 0.25rem 0;
+}
+
+.refugeeId {
+    font-size: 0.875rem;
+    color: #6b7280;
+    margin-bottom: 0.5rem;
+}
+
+.statusBadge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.25rem 0.75rem;
+    background: #d1fae5;
+    color: #065f46;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+/* Stats Grid */
+.statsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.statCard {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.statCard h3 {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #6b7280;
+    margin: 0 0 0.5rem 0;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
 }
 
 .statValue {
     font-size: 2rem;
     font-weight: 700;
-    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: #111827;
     margin: 0;
 }
 
-.profileGrid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
+/* Consent Management */
+.consentList {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
 }
 
-.profileGrid label {
-    display: block;
-    font-size: 0.875rem;
-    margin-bottom: 0.25rem;
+.consentItem {
+    background: white;
+    border-radius: 12px;
+    padding: 1.25rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.profileGrid p {
+.consentInfo h4 {
+    font-size: 1rem;
     font-weight: 600;
+    color: #111827;
+    margin: 0 0 0.25rem 0;
+}
+
+.consentInfo p {
+    font-size: 0.875rem;
+    color: #6b7280;
     margin: 0;
 }
 
+/* QR Code */
 .qrCodeContainer {
     display: flex;
     justify-content: center;
     padding: 2rem;
-    background: white;
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-md);
-    margin: 0 auto;
-    width: fit-content;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
+/* Service Providers */
+.servicesGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.serviceCard {
+    background: white;
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: all 0.3s;
+}
+
+.serviceCard:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.serviceIcon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.serviceCard h3 {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: #111827;
+    margin: 0 0 0.5rem 0;
+}
+
+.serviceCard p {
+    font-size: 0.875rem;
+    color: #6b7280;
+    margin-bottom: 1.5rem;
+}
+
+.serviceButton {
+    width: 100%;
+    padding: 0.75rem 1.5rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.serviceButton:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+/* Dashboard Grid Layout */
+.dashboardGrid {
+    display: grid;
+    grid-template-columns: 1fr 400px;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.leftColumn {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.rightColumn {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* Mini Stats Cards */
+.statsRow {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.miniStatCard {
+    background: white;
+    border-radius: 12px;
+    padding: 1.25rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.miniStatCard h4 {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #6b7280;
+    margin: 0 0 0.5rem 0;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.miniStatCard .statValue {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #111827;
+    margin: 0;
+}
+
+.trendIndicator {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 1.5rem;
+}
+
+/* Consent Section */
+.consentSection {
+    background: white;
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.consentSection h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #111827;
+    margin: 0 0 1rem 0;
+}
+
+.consentItem h4 {
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: #111827;
+    margin: 0;
+}
+
+.consentItem p {
+    font-size: 0.8125rem;
+    color: #6b7280;
+    margin: 0.25rem 0 0 0;
+}
+
+/* QR Section */
+.qrSection {
+    background: white;
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.qrCard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.qrButton {
+    padding: 1rem 2rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.qrButton:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+.qrLabel {
+    font-size: 0.875rem;
+    color: #6b7280;
+    text-align: center;
+    margin: 0;
+}
+
+/* Services Section */
+.servicesSection {
+    margin-top: 2rem;
+}
+
+.servicesSection h3 {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: #111827;
+    margin: 0 0 1.5rem 0;
+}
+
+/* Responsive Design */
 @media (max-width: 1024px) {
-    .container {
+    .dashboardGrid {
         grid-template-columns: 1fr;
     }
 
+    .rightColumn {
+        grid-template-columns: repeat(2, 1fr);
+        display: grid;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+
     .sidebar {
-        position: static;
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid #e5e7eb;
     }
 
     .nav {
@@ -139,22 +450,11 @@
         overflow-x: auto;
     }
 
-    .navItem,
-    .navItemActive {
-        white-space: nowrap;
-    }
-}
-
-@media (max-width: 768px) {
-    .headerContent {
-        padding: 0 1rem;
+    .statsGrid {
+        grid-template-columns: 1fr;
     }
 
-    .container {
-        padding: 1rem;
-    }
-
-    .nav {
-        flex-direction: column;
+    .servicesGrid {
+        grid-template-columns: 1fr;
     }
 }

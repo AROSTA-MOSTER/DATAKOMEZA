@@ -16,7 +16,7 @@ const logger = require('../utils/logger');
  * @access  Private (Admin)
  */
 router.post('/',
-    auth,
+    auth.authenticateToken,
     [
         body('policyName').notEmpty().withMessage('Policy name is required'),
         body('policyType').isIn(['data_sharing', 'authentication', 'credential', 'ekyc']).withMessage('Invalid policy type'),
@@ -51,7 +51,7 @@ router.post('/',
  * @desc    Get policy by ID
  * @access  Private
  */
-router.get('/:policyId', auth, async (req, res) => {
+router.get('/:policyId', auth.authenticateToken, async (req, res) => {
     try {
         const { policyId } = req.params;
 
@@ -75,7 +75,7 @@ router.get('/:policyId', auth, async (req, res) => {
  * @desc    List all policies
  * @access  Private
  */
-router.get('/', auth, async (req, res) => {
+router.get('/', auth.authenticateToken, async (req, res) => {
     try {
         const filters = {
             policyType: req.query.policyType,
@@ -104,7 +104,7 @@ router.get('/', auth, async (req, res) => {
  * @access  Private (Admin)
  */
 router.put('/:policyId',
-    auth,
+    auth.authenticateToken,
     [
         body('policyName').optional().isString(),
         body('description').optional().isString(),
@@ -139,7 +139,7 @@ router.put('/:policyId',
  * @access  Private (Admin)
  */
 router.post('/map',
-    auth,
+    auth.authenticateToken,
     [
         body('partnerId').isInt().withMessage('Partner ID is required'),
         body('policyId').isInt().withMessage('Policy ID is required')
@@ -172,7 +172,7 @@ router.post('/map',
  * @desc    Get policies for a partner
  * @access  Private
  */
-router.get('/partner/:partnerId', auth, async (req, res) => {
+router.get('/partner/:partnerId', auth.authenticateToken, async (req, res) => {
     try {
         const { partnerId } = req.params;
 
@@ -196,7 +196,7 @@ router.get('/partner/:partnerId', auth, async (req, res) => {
  * @desc    Create default policies
  * @access  Private (Admin)
  */
-router.post('/init-defaults', auth, async (req, res) => {
+router.post('/init-defaults', auth.authenticateToken, async (req, res) => {
     try {
         const result = await policyService.createDefaultPolicies();
 

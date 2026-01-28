@@ -159,8 +159,8 @@ router.post('/biometric',
  * @access  Private (Partner API Key required)
  */
 router.post('/ekyc',
-    auth,
     [
+        auth.authenticateToken,
         body('userId').notEmpty().withMessage('User ID is required'),
         body('partnerId').notEmpty().withMessage('Partner ID is required'),
         body('policyId').optional().isInt()
@@ -196,7 +196,7 @@ router.post('/ekyc',
  * @desc    Get authentication history for user
  * @access  Private
  */
-router.get('/history/:userId', auth, async (req, res) => {
+router.get('/history/:userId', auth.authenticateToken, async (req, res) => {
     try {
         const { userId } = req.params;
         const limit = parseInt(req.query.limit) || 50;

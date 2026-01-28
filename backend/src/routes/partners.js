@@ -51,7 +51,7 @@ router.post('/register',
  * @access  Private
  */
 router.post('/:partnerId/certificate',
-    auth,
+    auth.authenticateToken,
     [
         body('certificatePEM').notEmpty().withMessage('Certificate is required'),
         body('validFrom').isISO8601().withMessage('Valid from date required'),
@@ -87,7 +87,7 @@ router.post('/:partnerId/certificate',
  * @access  Private (Admin)
  */
 router.post('/:partnerId/api-key',
-    auth,
+    auth.authenticateToken,
     [
         body('keyType').isIn(['sandbox', 'production']).withMessage('Invalid key type')
     ],
@@ -120,7 +120,7 @@ router.post('/:partnerId/api-key',
  * @access  Private (Admin)
  */
 router.post('/:partnerId/license',
-    auth,
+    auth.authenticateToken,
     [
         body('licenseType').isIn(['misp', 'device', 'ftm']).withMessage('Invalid license type'),
         body('maxTransactions').optional().isInt()
@@ -157,7 +157,7 @@ router.post('/:partnerId/license',
  * @desc    Approve partner registration
  * @access  Private (Admin)
  */
-router.put('/:partnerId/approve', auth, async (req, res) => {
+router.put('/:partnerId/approve', auth.authenticateToken, async (req, res) => {
     try {
         const { partnerId } = req.params;
         const approvedBy = req.user.id; // From auth middleware
@@ -179,7 +179,7 @@ router.put('/:partnerId/approve', auth, async (req, res) => {
  * @desc    Get partner details
  * @access  Private
  */
-router.get('/:partnerId', auth, async (req, res) => {
+router.get('/:partnerId', auth.authenticateToken, async (req, res) => {
     try {
         const { partnerId } = req.params;
 
@@ -203,7 +203,7 @@ router.get('/:partnerId', auth, async (req, res) => {
  * @desc    List all partners
  * @access  Private (Admin)
  */
-router.get('/', auth, async (req, res) => {
+router.get('/', auth.authenticateToken, async (req, res) => {
     try {
         const filters = {
             partnerType: req.query.partnerType,

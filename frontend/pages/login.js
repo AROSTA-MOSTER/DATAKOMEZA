@@ -8,6 +8,8 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useAuth } from '../context/AuthContext';
+import FloatingParticles from '../components/FloatingParticles';
+import QuantumBadge from '../components/QuantumBadge';
 import styles from '../styles/Auth.module.css';
 
 export default function Login() {
@@ -39,78 +41,77 @@ export default function Login() {
                 <title>Login - DATAKOMEZA</title>
             </Head>
 
-            <div className={styles.container}>
-                <div className={styles.authBox}>
-                    <div className={styles.authHeader}>
-                        <h1>Welcome Back</h1>
-                        <p className="text-muted">Sign in to access your digital identity</p>
+            <FloatingParticles />
+
+            <div className={styles.loginContainer}>
+                <div className={styles.loginCard}>
+                    <div className={styles.lockIcon}>
+                        <div className={styles.lockCircle}>
+                            🔒
+                        </div>
+                    </div>
+
+                    <h1 className={styles.loginTitle}>DATAKOMEZA</h1>
+
+                    <div className={styles.quantumBadgeWrapper}>
+                        <QuantumBadge text="Quantum-Safe" size="small" />
                     </div>
 
                     {error && (
-                        <div className="alert alert-error">
+                        <div className={styles.errorMessage}>
                             {error}
                         </div>
                     )}
 
-                    <form onSubmit={handleSubmit} className={styles.authForm}>
-                        <div className="form-group">
-                            <label htmlFor="identifier" className="form-label">
-                                Email or Phone Number
-                            </label>
+                    <form onSubmit={handleSubmit} className={styles.loginForm}>
+                        <div className={styles.formGroup}>
                             <input
                                 type="text"
                                 id="identifier"
-                                className="form-input"
+                                className={styles.glassInput}
                                 value={identifier}
                                 onChange={(e) => setIdentifier(e.target.value)}
-                                placeholder="amina.refugee@example.com"
+                                placeholder="Email"
                                 required
                             />
                         </div>
 
-                        <div className="form-group">
-                            <label htmlFor="pin" className="form-label">
-                                PIN (6 digits)
-                            </label>
+                        <div className={styles.formGroup}>
                             <input
                                 type="password"
                                 id="pin"
-                                className="form-input"
+                                className={styles.glassInput}
                                 value={pin}
                                 onChange={(e) => setPin(e.target.value)}
-                                placeholder="••••••"
+                                placeholder="PIN"
                                 maxLength="6"
                                 pattern="[0-9]{6}"
                                 required
                             />
-                            <small className="text-muted">Enter your 6-digit PIN</small>
                         </div>
 
                         <button
                             type="submit"
-                            className="btn btn-primary"
-                            style={{ width: '100%' }}
+                            className={styles.signInButton}
                             disabled={loading}
                         >
                             {loading ? 'Signing in...' : 'Sign In'}
                         </button>
                     </form>
 
-                    <div className={styles.authFooter}>
-                        <p className="text-muted">
-                            Don't have an account?{' '}
-                            <Link href="/register">Register here</Link>
-                        </p>
-                        <p className="text-muted">
-                            <Link href="/">← Back to home</Link>
-                        </p>
+                    <div className={styles.loginFooter}>
+                        <Link href="/register" className={styles.footerLink}>
+                            Don't have an account? Register
+                        </Link>
+                        <Link href="/" className={styles.footerLink}>
+                            ← Back to home
+                        </Link>
                     </div>
+                </div>
 
-                    <div className={styles.sampleCredentials}>
-                        <h4>Sample Credentials</h4>
-                        <p><strong>Email:</strong> amina.refugee@example.com</p>
-                        <p><strong>PIN:</strong> 123456</p>
-                    </div>
+                {/* Sample credentials hint */}
+                <div className={styles.sampleHint}>
+                    <p><strong>Test:</strong> refugee@test.com / 123456</p>
                 </div>
             </div>
         </>

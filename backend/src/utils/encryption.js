@@ -7,7 +7,11 @@ const crypto = require('crypto');
 const pqc = require('./postQuantumCrypto');
 
 const ALGORITHM = 'aes-256-gcm';
-const KEY = Buffer.from(process.env.ENCRYPTION_KEY || 'your-32-character-encryption-key-here-change-in-prod'.padEnd(32, '0').substring(0, 32));
+const ENCRYPTION_KEY = process.env.ENCRYPTION_KEY;
+if (!ENCRYPTION_KEY || ENCRYPTION_KEY.length < 32) {
+    throw new Error('FATAL: ENCRYPTION_KEY must be set and at least 32 characters');
+}
+const KEY = Buffer.from(ENCRYPTION_KEY.substring(0, 32));
 const IV_LENGTH = 16;
 const AUTH_TAG_LENGTH = 16;
 

@@ -6,7 +6,10 @@
 const jwt = require('jsonwebtoken');
 const { logger } = require('../utils/logger');
 
-const JWT_SECRET = process.env.JWT_SECRET || 'your-super-secret-jwt-key';
+const JWT_SECRET = process.env.JWT_SECRET;
+if (!JWT_SECRET) {
+    throw new Error('FATAL: JWT_SECRET environment variable must be set');
+}
 
 /**
  * Verify JWT token and attach user to request
